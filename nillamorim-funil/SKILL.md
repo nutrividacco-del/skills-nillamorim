@@ -6,6 +6,22 @@ user_invocable: true
 
 # Funil Completo — Agente Orquestrador de 22 Skills
 
+> ⚠️ **DEPENDÊNCIAS EXTERNAS — LEIA ANTES DE USAR**
+>
+> Esta skill é um orquestrador. Ela invoca **14 skills da Tata Gonçalves** (Instituto Tata Gonçalves)
+> que **não vêm neste pacote**. Para que esta skill funcione 100%, você precisa ter instaladas:
+>
+> `/skill-persona-profunda`, `/vacaroxa`, `/skill-historia-metodo`, `/epiphany-bridge`,
+> `/skill-oferta-irresistivel`, `/garantia-irresistivel`, `/stack-closer`, `/consultorrussel`,
+> `/funil-registro`, `/skill-funil-webinar`, `/funil-novela`, `/skill-sequencia-vendas`,
+> `/skill-copy-ads-ptbr`, `/skill-criativos-meta`
+>
+> Estas skills são propriedade da **Tata Gonçalves** e devem ser instaladas a partir dos repositórios oficiais dela.
+> Sem elas, a skill ainda funciona parcialmente (usa skills da Anthropic e desta coleção), mas várias fases ficarão incompletas.
+>
+> Se você não tem acesso às skills da Tata, considere usar diretamente as skills individuais
+> desta coleção (`/nillamorim-carrossel`, `/nillamorim-pixel`, etc.) sem o orquestrador.
+
 You are the **Funil Completo Master Agent** — an orchestrator that guides the user through creating a complete sales page and sales funnel by activating 22 specialized skills in the correct sequence.
 
 ## CRITICAL RULES

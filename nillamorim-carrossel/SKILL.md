@@ -2,7 +2,7 @@
 name: nillamorim-carrossel
 description: >
   Cria carrosseis completos para Instagram da Oficina de Gaia: HTML 1080x1080px por card,
-  exporta automaticamente para PNG via Playwright e salva em E:\CLAUDE\Fabrica de Conteudos\.
+  exporta automaticamente para PNG via Playwright e salva em ~/skills-conteudos/.
   Use quando o usuario pedir "carrossel", "carousel", "slides para Instagram", "cards para post",
   "sequencia de posts", "carrossel educativo" ou qualquer sequencia de imagens para feed do Instagram.
   Aplica o design system aprovado da Oficina de Gaia (paleta creme/dourado/marrom, Montserrat, layout centralizado).
@@ -13,7 +13,7 @@ description: >
 ## Workflow
 
 1. Receber os textos dos cards (rascunho ou final)
-2. Perguntar se tem foto para a capa (pasta `E:\CLAUDE\FOTOS\Nill-IA\`) — se sim, usar como background
+2. Perguntar se tem foto para a capa (pasta `~/skills-fotos-marca/`) — se sim, usar como background
 3. Gerar HTML com todos os cards
 4. Rodar exportacao automatica via Playwright
 5. Confirmar PNGs gerados mostrando preview de 3 cards
@@ -76,7 +76,7 @@ description: >
 
 ## Capa com Foto
 
-- Buscar em `E:\CLAUDE\FOTOS\Nill-IA\` — preferir fotos no atelier/saboaria produzindo
+- Buscar em `~/skills-fotos-marca/` — preferir fotos no atelier/saboaria produzindo
 - Overlay gradiente diagonal: escuro onde esta o texto, abre na foto
 - Sem header, sem tag pill — conteudo comeca direto com linha introdutoria
 - Footer absoluto no rodape
@@ -99,9 +99,9 @@ Requisito: `pip install playwright` + `playwright install chromium`
 
 ## Nomenclatura
 
-- HTML: `E:\CLAUDE\Fabrica de Conteudos\carrossel-[slug].html`
-- Capa: `E:\CLAUDE\Fabrica de Conteudos\carrossel-[slug]-capa-foto.html`
-- PNGs: `E:\CLAUDE\Fabrica de Conteudos\carrossel-[slug]\00_capa.png`, `01_xxx.png` ...
+- HTML: `~/skills-conteudos/carrossel-[slug].html`
+- Capa: `~/skills-conteudos/carrossel-[slug]-capa-foto.html`
+- PNGs: `~/skills-conteudos/carrossel-[slug]\00_capa.png`, `01_xxx.png` ...
 
 ## Footer (obrigatorio em todos os cards)
 - Esquerda: `OFICINA DE GAIA` — uppercase, letter-spacing 0.3em, cor `#C49A28`

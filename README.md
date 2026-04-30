@@ -70,11 +70,23 @@ Ou simplesmente descrever o que você quer (ex: "quero criar um carrossel sobre 
 
 ## Personalização
 
-Algumas skills foram criadas com caminhos absolutos do meu computador (`E:\CLAUDE\...`). Antes de usar, abra o `SKILL.md` da skill e ajuste:
+As skills usam **caminhos multiplataforma** (`~/skills-conteudos/`, `~/skills-fotos-marca/`) que funcionam em Windows (Git Bash), Mac e Linux. As pastas são criadas automaticamente quando você usa a skill pela primeira vez.
 
-- Caminhos de saída (`E:\CLAUDE\Fabrica de Conteudos\` → seu próprio caminho)
-- Identidade visual (paletas, fontes) — substitua pela sua
-- Caminhos de fotos pessoais (`E:\CLAUDE\FOTOS\Nill-IA\`) → onde estão as suas
+### Pastas que as skills usam
+
+| Pasta | Para que serve | Skills que usam |
+|-------|----------------|-----------------|
+| `~/skills-conteudos/` | Saída de carrosseis, HTMLs, PNGs gerados | `nillamorim-carrossel` |
+| `~/skills-fotos-marca/` | Fotos da expert (você ou a aluna) pra capa de carrossel | `nillamorim-carrossel` |
+| `~/depo-cutter/` | Workspace do editor de vídeo (input/output/temp) | `nillamorim-editor-video` |
+| `~/.isaura-config.json` | Config persistente da skill de transcrição | `nillamorim-transcricao` |
+| `~/.severino-config.json` | Config persistente da skill de login | `nillamorim-login` |
+
+### O que você pode customizar
+
+- **Identidade visual** (paletas, fontes) — cada SKILL.md tem uma seção "Design System". Abra e troque pelas suas cores e fontes
+- **Caminhos** — se quiser usar pastas diferentes das padrões, abra o SKILL.md e edite as variáveis no topo
+- **Prompts da IA** — pode ajustar tom, vocabulário e exemplos pra ficar com a sua cara
 
 ---
 

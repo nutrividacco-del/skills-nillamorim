@@ -1,5 +1,5 @@
 """
-Exportador de Carrossel Instagram — Oficina de Gaia
+Exportador de Carrossel Instagram
 Converte cards HTML em PNG 1080x1080 usando Playwright.
 
 USO:
@@ -7,6 +7,9 @@ USO:
   2. Rodar: python exportar_carrossel.py
 
 REQUISITO: pip install playwright && playwright install chromium
+
+OBSERVACAO: Os caminhos abaixo usam ~/skills-conteudos/ (multiplataforma).
+A pasta sera criada automaticamente se nao existir.
 """
 
 from playwright.sync_api import sync_playwright
@@ -14,9 +17,12 @@ from pathlib import Path
 import time
 
 # ── Configurar aqui ───────────────────────────────────────────
-HTML_CARROSSEL = Path("E:/CLAUDE/Fabrica de Conteudos/carrossel-SLUG.html")
-HTML_CAPA      = Path("E:/CLAUDE/Fabrica de Conteudos/carrossel-SLUG-capa-foto.html")
-OUTPUT_DIR     = Path("E:/CLAUDE/Fabrica de Conteudos/carrossel-SLUG/")
+BASE_DIR = Path.home() / "skills-conteudos"
+BASE_DIR.mkdir(parents=True, exist_ok=True)
+
+HTML_CARROSSEL = BASE_DIR / "carrossel-SLUG.html"
+HTML_CAPA      = BASE_DIR / "carrossel-SLUG-capa-foto.html"
+OUTPUT_DIR     = BASE_DIR / "carrossel-SLUG"
 
 # (id_do_elemento, nome_do_arquivo_sem_extensao)
 CARDS = [
