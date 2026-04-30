@@ -1,0 +1,11 @@
+# Arquivos locais que não devem entrar no repo
+.env
+.env.local
+*.log
+node_modules/
+.DS_Store
+Thumbs.db
+
+# Caches do Claude Code
+.claude/
+*.tmp
