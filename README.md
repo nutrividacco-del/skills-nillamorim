@@ -2,7 +2,7 @@
 
 Coleção de skills do Claude Code criadas pela **Nill Amorim** (Oficina de Gaia) para uso interno e compartilhamento com mentoradas.
 
-> Repositório **privado**. Acesso por convite.
+> Repositório **público** — qualquer mentorada pode clonar e instalar.
 
 ---
 
@@ -26,7 +26,6 @@ Coleção de skills do Claude Code criadas pela **Nill Amorim** (Oficina de Gaia
 
 - Claude Code instalado ([guia oficial](https://docs.claude.com/claude-code))
 - Git instalado
-- Acesso a este repositório (convite enviado por e-mail)
 
 ### 2. Instalar todas as skills de uma vez
 
