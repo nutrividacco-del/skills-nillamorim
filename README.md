@@ -10,11 +10,13 @@ Coleção de skills do Claude Code criadas pela **Nill Amorim** (Oficina de Gaia
 
 | Skill | O que faz | Stack |
 |-------|-----------|-------|
+| **nillamorim-arquitetura** | Auditoria e diagnóstico arquitetural de apps — 6 padrões universais (engenharia reversa da Atlassian), notas 0-10, anti-patterns, roadmap 30/60/90 e código pronto. Método Imperatriz (Tata Gonçalves) | Node/TS (qualquer app) |
 | **nillamorim-carrossel** | Cria carrosseis 1080×1080 para Instagram com identidade visual aprovada (HTML → PNG via Playwright) | HTML/CSS, Playwright |
 | **nillamorim-editor-video** | Editor de vídeo com IA — analisa, transcreve, corta, compila depoimentos e Reels (CTA animado com Remotion) | ffmpeg, Whisper/Gemini, Remotion |
 | **nillamorim-funil** | Agente Mestre de Funis — orquestra criação de página de vendas + funil completo | Multi-skill |
 | **nillamorim-login** | SEVERINO — sistema de login por convite + admin panel + recuperação de senha | Express, SQLite, JWT, React |
 | **nillamorim-minerador** | Minerador inteligente de WhatsApp — monitora grupos, classifica com IA, relatório diário | Baileys, Gemini |
+| **nillamorim-orquestrador-terminais** | Gerente de produção — divide um projeto em frentes independentes sem conflito de arquivos pra rodar vários terminais do Claude Code em paralelo, com pacote de trabalho por terminal + plano de integração | Claude Code |
 | **nillamorim-pixel** | Instala e configura Meta Pixel com eventos custom em projetos React + TypeScript | React, TypeScript |
 | **nillamorim-transcricao** | ISAURA — transcreve aulas + gera materiais (workbook, mapa mental, plataforma Netflix-style) | Gemini, React, Cloudflare Pages |
 
@@ -54,11 +56,13 @@ Pronto — as skills se atualizam sem precisar reinstalar.
 Depois de instalar, basta digitar o nome da skill no Claude Code:
 
 ```
+/nillamorim-arquitetura
 /nillamorim-carrossel
 /nillamorim-editor-video
 /nillamorim-funil
 /nillamorim-login
 /nillamorim-minerador
+/nillamorim-orquestrador-terminais
 /nillamorim-pixel
 /nillamorim-transcricao
 ```

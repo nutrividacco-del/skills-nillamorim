@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{APP_NAME} - Dashboard Arquitetural</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  :root {
+    --dourado: #D97706;
+    --dourado-bg: #FEF3C7;
+    --roxo: #7C3AED;
+    --roxo-bg: #EDE9FE;
+    --verde: #059669;
+    --verde-bg: #D1FAE5;
+    --vermelho: #DC2626;
+    --vermelho-bg: #FEE2E2;
+    --amarelo: #D97706;
+    --amarelo-bg: #FEF3C7;
+    --cinza: #F9FAFB;
+    --preto: #111827;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #FAFAFA;
+    color: var(--preto);
+    line-height: 1.6;
+    padding: 40px 20px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+  header {
+    background: linear-gradient(135deg, var(--dourado-bg) 0%, white 100%);
+    padding: 40px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    border-left: 8px solid var(--dourado);
+  }
+  h1 { font-size: 2.5rem; color: var(--preto); margin-bottom: 10px; }
+  h2 { font-size: 1.5rem; color: var(--dourado); margin: 30px 0 15px; }
+  .meta { color: #666; font-size: 0.95rem; }
+  .grid { display: grid; gap: 20px; margin-bottom: 30px; }
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 768px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+  .card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .score-big {
+    font-size: 5rem;
+    font-weight: 800;
+    color: var(--dourado);
+    line-height: 1;
+  }
+  .veredito {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-weight: 600;
+    margin-top: 10px;
+  }
+  .veredito.critico { background: var(--vermelho-bg); color: var(--vermelho); }
+  .veredito.fragil { background: var(--amarelo-bg); color: var(--amarelo); }
+  .veredito.razoavel { background: var(--dourado-bg); color: var(--dourado); }
+  .veredito.solido { background: var(--verde-bg); color: var(--verde); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+  th { background: var(--cinza); font-weight: 600; font-size: 0.9rem; }
+  .nota { display: inline-block; padding: 4px 10px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; }
+  .nota.baixa { background: var(--vermelho-bg); color: var(--vermelho); }
+  .nota.media { background: var(--amarelo-bg); color: var(--amarelo); }
+  .nota.alta { background: var(--verde-bg); color: var(--verde); }
+  .badge { padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
+  .badge.alto { background: var(--vermelho-bg); color: var(--vermelho); }
+  .badge.medio { background: var(--amarelo-bg); color: var(--amarelo); }
+  .badge.baixo { background: var(--verde-bg); color: var(--verde); }
+  canvas { max-height: 400px; }
+  footer {
+    margin-top: 50px;
+    text-align: center;
+    color: #999;
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>{APP_NAME}</h1>
+    <p class="meta">Dashboard Arquitetural · gerado por <strong>/arquitetura-imperatriz</strong> em {DATA}</p>
+    <p class="meta">Porte: {PORTE} ({PORTE_NOME}) · Modo: {MODO}</p>
+  </header>
+
+  <div class="grid grid-3">
+    <div class="card" style="text-align: center;">
+      <div style="font-size: 0.9rem; color: #666;">SCORE GERAL</div>
+      <div class="score-big">{SCORE}<span style="font-size: 2rem;">/60</span></div>
+      <div class="veredito {VEREDITO_CLASS}">{VEREDITO}</div>
+    </div>
+    <div class="card" style="text-align: center;">
+      <div style="font-size: 0.9rem; color: #666;">ANTI-PATTERNS DETECTADOS</div>
+      <div class="score-big" style="color: var(--vermelho);">{N_ANTI_PATTERNS}<span style="font-size: 2rem;">/10</span></div>
+      <div style="margin-top: 10px; color: #666;">{N_PRESENTES} presentes</div>
+    </div>
+    <div class="card" style="text-align: center;">
+      <div style="font-size: 0.9rem; color: #666;">QUICK WINS</div>
+      <div class="score-big" style="color: var(--verde);">{N_QUICK_WINS}</div>
+      <div style="margin-top: 10px; color: #666;">próximos 30 dias</div>
+    </div>
+  </div>
+
+  <h2>📊 Notas dos 6 Padrões</h2>
+  <div class="card">
+    <canvas id="radarChart"></canvas>
+  </div>
+
+  <h2>🚀 Roadmap por Sprint</h2>
+  <div class="card">
+    <canvas id="roadmapChart"></canvas>
+  </div>
+
+  <h2>📋 Tabela ICE (top 10)</h2>
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th><th>Recomendação</th><th>I</th><th>C</th><th>E</th><th>Score</th><th>Sprint</th>
+        </tr>
+      </thead>
+      <tbody id="iceTable">
+        <!-- preencher via JS -->
+      </tbody>
+    </table>
+  </div>
+
+  <footer>
+    Gerado por <strong>/arquitetura-imperatriz</strong> — Método Imperatriz de Arquitetura<br>
+    Inspirado na engenharia reversa da edge infrastructure da Atlassian
+  </footer>
+</div>
+
+<script>
+// DADOS DO DIAGNOSTICO (substituido pela skill com dados reais)
+const dados = {
+  padroes: {
+    labels: ['Fila + Aviso', 'Control/Data', 'Templates+Context', 'Receita Congelada', 'Planta da Infra', 'Concentre na Borda'],
+    notas: [{N1}, {N2}, {N3}, {N4}, {N5}, {N6}],
+  },
+  roadmap: {
+    labels: ['Sprint 1 (30d)', 'Sprint 2 (60d)', 'Sprint 3 (90d)', 'Futuro'],
+    tarefas: [{N_S1}, {N_S2}, {N_S3}, {N_FUTURO}],
+    horas: [{H_S1}, {H_S2}, {H_S3}, {H_FUTURO}],
+  },
+  ice: [
+    /* {ICE_DATA} */
+  ],
+};
+
+// Radar
+new Chart(document.getElementById('radarChart'), {
+  type: 'radar',
+  data: {
+    labels: dados.padroes.labels,
+    datasets: [{
+      label: 'Atual',
+      data: dados.padroes.notas,
+      backgroundColor: 'rgba(124, 58, 237, 0.2)',
+      borderColor: 'rgb(124, 58, 237)',
+      borderWidth: 3,
+    }, {
+      label: 'Ideal',
+      data: [10,10,10,10,10,10],
+      backgroundColor: 'rgba(5, 150, 105, 0.05)',
+      borderColor: 'rgb(5, 150, 105)',
+      borderDash: [5,5],
+    }]
+  },
+  options: {
+    scales: { r: { min: 0, max: 10, ticks: { stepSize: 2 } } },
+  }
+});
+
+// Bar
+new Chart(document.getElementById('roadmapChart'), {
+  type: 'bar',
+  data: {
+    labels: dados.roadmap.labels,
+    datasets: [{
+      label: 'Tarefas',
+      data: dados.roadmap.tarefas,
+      backgroundColor: '#D97706',
+    }, {
+      label: 'Horas estimadas',
+      data: dados.roadmap.horas,
+      backgroundColor: '#7C3AED',
+    }]
+  },
+  options: { responsive: true }
+});
+
+// ICE table
+const tbody = document.getElementById('iceTable');
+dados.ice.forEach((row, i) => {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td>${i+1}</td>
+    <td>${row.nome}</td>
+    <td>${row.i}</td>
+    <td>${row.c}</td>
+    <td>${row.e}</td>
+    <td><strong>${row.score}</strong></td>
+    <td><span class="badge ${row.sprint === 'Agora' ? 'alto' : row.sprint === '+30 dias' ? 'medio' : 'baixo'}">${row.sprint}</span></td>
+  `;
+  tbody.appendChild(tr);
+});
+</script>
+
+</body>
+</html>
